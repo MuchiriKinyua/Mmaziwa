@@ -47,7 +47,8 @@ class MyApp extends StatelessWidget {
               partyA: phone,
               partyB: "174379",
               callBackURL: Uri(
-                  scheme: "https", host: "1234.1234.co.ke", path: "/1234.php"),
+                  scheme: "https",
+                  host: "us-central1-MY_PROJECT.cloudfunctions.net/addMessage"),
               accountReference: "payment",
               phoneNumber: phone,
               baseUri: Uri(scheme: "https", host: "sandbox.safaricom.co.ke"),
