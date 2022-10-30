@@ -1,7 +1,8 @@
-import 'controller/splashscreen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:mmaziwaapp/core/app_export.dart';
 import 'package:mmaziwaapp/widgets/custom_button.dart';
+
+import 'controller/splashscreen_controller.dart';
 
 class SplashscreenScreen extends GetWidget<SplashscreenController> {
   @override
@@ -83,6 +84,6 @@ class SplashscreenScreen extends GetWidget<SplashscreenController> {
   }
 
   onTapBtnGetstarted() {
-    Get.toNamed(AppRoutes.registrationScreen);
+    Get.offAndToNamed(AppRoutes.registrationScreen);
   }
 }

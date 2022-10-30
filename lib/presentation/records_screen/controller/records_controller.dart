@@ -4,7 +4,7 @@ import 'package:mmaziwaapp/presentation/records_screen/models/records_model.dart
 import '/core/app_export.dart';
 
 class RecordsController extends GetxController {
-  TextEditingController emailInputController = TextEditingController();
+  TextEditingController nameInputController = TextEditingController();
 
   TextEditingController typeInputController = TextEditingController();
 
@@ -24,7 +24,7 @@ class RecordsController extends GetxController {
   @override
   void onClose() {
     super.onClose();
-    emailInputController.dispose();
+    nameInputController.dispose();
     typeInputController.dispose();
     outputInputController.dispose();
     buyerInputController.dispose();

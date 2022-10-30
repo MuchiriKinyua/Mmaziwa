@@ -78,23 +78,19 @@ class LogInScreen extends GetWidget<LogInController> {
                                                         ]),
                                                         textAlign:
                                                             TextAlign.left))),
-                                            Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Padding(
-                                                    padding: getPadding(
-                                                        left: 27,
-                                                        top: 17,
-                                                        right: 27,
-                                                        bottom: 14),
-                                                    child: Text(
-                                                        "msg_enter_your_deta"
-                                                            .tr,
-                                                        overflow: TextOverflow
-                                                            .ellipsis,
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: AppStyle
-                                                            .txtInterSemiBold12)))
+                                            Padding(
+                                                padding: getPadding(
+                                                    left: 27,
+                                                    top: 17,
+                                                    right: 27,
+                                                    bottom: 14),
+                                                child: Text(
+                                                    "msg_enter_your_deta".tr,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    textAlign: TextAlign.left,
+                                                    style: AppStyle
+                                                        .txtInterSemiBold12))
                                           ]))),
                               Align(
                                   alignment: Alignment.centerLeft,
@@ -152,7 +148,6 @@ class LogInScreen extends GetWidget<LogInController> {
                               Align(
                                   alignment: Alignment.centerLeft,
                                   child: Container(
-                                      height: getVerticalSize(22.00),
                                       width: getHorizontalSize(250.00),
                                       margin: getMargin(
                                           left: 28, top: 6, right: 28),
@@ -207,7 +202,7 @@ class LogInScreen extends GetWidget<LogInController> {
       )
           .then((userCredential) {
         if (userCredential.user != null) {
-          Get.toNamed(AppRoutes.homepageScreen);
+          Get.offAndToNamed(AppRoutes.homepageScreen);
         }
       });
     } on FirebaseAuthException catch (e) {

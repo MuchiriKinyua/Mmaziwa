@@ -1,5 +1,6 @@
-import '/core/app_export.dart';
 import 'package:mmaziwaapp/presentation/homepage_screen/models/homepage_model.dart';
+
+import '/core/app_export.dart';
 
 class HomepageController extends GetxController {
   Rx<HomepageModel> homepageModelObj = HomepageModel().obs;

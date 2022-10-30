@@ -1,7 +1,6 @@
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mmaziwaapp/core/app_export.dart';
-import 'package:mmaziwaapp/core/utils/validation_functions.dart';
 import 'package:mmaziwaapp/widgets/custom_button.dart';
 import 'package:mmaziwaapp/widgets/custom_text_form_field.dart';
 
@@ -28,7 +27,6 @@ class RecordsScreen extends GetWidget<RecordsController> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Container(
-                                  width: getHorizontalSize(274.00),
                                   margin:
                                       getMargin(left: 19, top: 32, right: 19),
                                   child: Text("msg_fill_the_spaces".tr,
@@ -66,15 +64,14 @@ class RecordsScreen extends GetWidget<RecordsController> {
                                             width: 219,
                                             focusNode: FocusNode(),
                                             controller:
-                                                controller.emailInputController,
-                                            hintText: "lbl_email".tr,
+                                                controller.nameInputController,
+                                            hintText: "lbl_name".tr,
                                             margin: getMargin(bottom: 10),
                                             alignment: Alignment.topLeft,
                                             validator: (value) {
                                               if (value == null ||
-                                                  (!isValidEmail(value,
-                                                      isRequired: true))) {
-                                                return "Please enter valid email";
+                                                  value.isEmpty) {
+                                                return "Please enter valid name";
                                               }
                                               return null;
                                             })
@@ -148,7 +145,7 @@ class RecordsScreen extends GetWidget<RecordsController> {
                                   margin: getMargin(left: 25, right: 25),
                                   textInputAction: TextInputAction.done),
                               CustomButton(
-                                  width: 162,
+                                  width: double.infinity,
                                   text: "lbl_save_update".tr,
                                   margin: getMargin(
                                       left: 19, top: 37, right: 19, bottom: 20),
@@ -161,8 +158,23 @@ class RecordsScreen extends GetWidget<RecordsController> {
   }
 
   onTapBtnSaveupdate() async {
-    Get.toNamed(AppRoutes.homepageScreen);
     // ignore: unused_local_variable
-    final storage = FirebaseStorage.instance;
+    try {
+      await FirebaseFirestore.instance.collection("records").add({
+        "name": controller.nameInputController.text,
+        "type": controller.typeInputController.text,
+        "output": controller.outputInputController.text,
+        "buyer": controller.buyerInputController.text,
+        "amount": controller.amountInputController.text,
+      });
+      controller.nameInputController.clear();
+      controller.typeInputController.clear();
+      controller.outputInputController.clear();
+      controller.buyerInputController.clear();
+      controller.amountInputController.clear();
+      Get.offAndToNamed(AppRoutes.homepageScreen);
+    } catch (e) {
+      print(e);
+    }
   }
 }

@@ -37,32 +37,33 @@ class RegistrationScreen extends GetWidget<RegistrationController> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Container(
-                                        margin: getMargin(
-                                            left: 67, top: 25, right: 67),
-                                        child: RichText(
-                                            text: TextSpan(children: [
-                                              TextSpan(
-                                                  text: "          ".tr,
-                                                  style: TextStyle(
-                                                      color: ColorConstant
-                                                          .black900,
-                                                      fontSize: getFontSize(24),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight:
-                                                          FontWeight.w400)),
-                                              TextSpan(
-                                                  text: "lbl_mmaziwa_app2".tr,
-                                                  style: TextStyle(
-                                                      color: ColorConstant
-                                                          .black900,
-                                                      fontSize: getFontSize(32),
-                                                      fontFamily: 'Inter',
-                                                      fontWeight:
-                                                          FontWeight.w400))
-                                            ]),
-                                            textAlign: TextAlign.left))),
+                                  alignment: Alignment.centerLeft,
+                                  child: Container(
+                                    margin:
+                                        getMargin(left: 67, top: 25, right: 67),
+                                    child: RichText(
+                                      text: TextSpan(children: [
+                                        TextSpan(
+                                            text: "          ".tr,
+                                            style: TextStyle(
+                                                color: ColorConstant.black900,
+                                                fontSize: getFontSize(24),
+                                                fontFamily: 'Inter',
+                                                fontWeight: FontWeight.w400)),
+                                        TextSpan(
+                                          text: "lbl_mmaziwa_app2".tr,
+                                          style: TextStyle(
+                                            color: ColorConstant.black900,
+                                            fontSize: getFontSize(32),
+                                            fontFamily: 'Inter',
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        )
+                                      ]),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                ),
                                 Align(
                                     alignment: Alignment.center,
                                     child: Padding(
@@ -93,7 +94,7 @@ class RegistrationScreen extends GetWidget<RegistrationController> {
                       margin: getMargin(left: 20, top: 7, right: 20),
                       alignment: Alignment.centerLeft,
                       validator: (value) {
-                        if (!isText(value)) {
+                        if (value == null || value.isEmpty) {
                           return "Please enter valid text";
                         }
                         return null;
@@ -143,6 +144,8 @@ class RegistrationScreen extends GetWidget<RegistrationController> {
                         return null;
                       },
                       isObscureText: true),
+                  Text(
+                      "Password should have at least upper case, lower case, a digit and a special character"),
                   Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
@@ -168,13 +171,26 @@ class RegistrationScreen extends GetWidget<RegistrationController> {
                       },
                       isObscureText: true),
                   CustomButton(
-                      width: 164,
-                      text: "lbl_register".tr,
-                      margin:
-                          getMargin(left: 30, top: 18, right: 30, bottom: 20),
-                      variant: ButtonVariant.FillIndigo300,
-                      onTap: onTapBtnRegister,
-                      alignment: Alignment.centerLeft)
+                    width: 164,
+                    text: "lbl_register".tr,
+                    margin: getMargin(left: 30, top: 18, right: 30),
+                    variant: ButtonVariant.FillIndigo300,
+                    onTap: onTapBtnRegister,
+                    alignment: Alignment.centerLeft,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      children: [
+                        Text("Already have an account?"),
+                        TextButton(
+                            onPressed: () {
+                              Get.offAndToNamed(AppRoutes.logInScreen);
+                            },
+                            child: Text("Login"))
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),
@@ -202,6 +218,6 @@ class RegistrationScreen extends GetWidget<RegistrationController> {
           .doc(user.uid)
           .set(userData);
     }
-    Get.toNamed(AppRoutes.logInScreen);
+    Get.toNamed(AppRoutes.homepageScreen);
   }
 }

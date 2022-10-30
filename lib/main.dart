@@ -1,6 +1,7 @@
 // ignore: unused_import
 import 'dart:collection';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -75,6 +76,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     startTransaction(amount: 10.0, phone: "254713030677");
+    bool isLoggedIn = FirebaseAuth.instance.currentUser != null;
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       translations: AppLocalization(),
@@ -82,7 +84,8 @@ class MyApp extends StatelessWidget {
       fallbackLocale: Locale('en', 'US'),
       title: 'mmaziwaapp',
       initialBinding: InitialBindings(),
-      initialRoute: AppRoutes.initialRoute,
+      initialRoute:
+          isLoggedIn ? AppRoutes.homepageScreen : AppRoutes.initialRoute,
       getPages: AppRoutes.pages,
     );
   }
