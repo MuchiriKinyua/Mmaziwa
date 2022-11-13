@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mmaziwaapp/core/app_export.dart';
 import 'package:mmaziwaapp/widgets/custom_button.dart';
@@ -5,6 +8,8 @@ import 'package:mpesa_flutter_plugin/initializer.dart';
 import 'package:mpesa_flutter_plugin/payment_enums.dart';
 
 import 'controller/m_pesa_controller.dart';
+
+///  RESULT: {MerchantRequestID: 11219-83067435-1, CheckoutRequestID: ws_CO_13112022101707170713030677, ResponseCode: 0, ResponseDescription: Success. Request accepted for processing, CustomerMessage: Success. Request accepted for processing}
 
 class MPesaScreen extends GetWidget<MPesaController> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -88,7 +93,7 @@ class MPesaScreen extends GetWidget<MPesaController> {
                             ElevatedButton(
                               onPressed: () {
                                 if (formKey.currentState!.validate()) {
-                                  pay();
+                                  pay(context);
                                 }
                               },
                               child: Text("Pay"),
@@ -136,7 +141,7 @@ class MPesaScreen extends GetWidget<MPesaController> {
     Get.toNamed(AppRoutes.homepageScreen);
   }
 
-  Future<dynamic> startTransaction(
+  Future<dynamic> startTransaction(BuildContext context,
       {required double amount, required String phone}) async {
     // ignore: unused_local_variable
     dynamic transactionInitialisation;
@@ -162,6 +167,46 @@ class MPesaScreen extends GetWidget<MPesaController> {
                   "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919");
 
       print("RESULT: " + transactionInitialisation.toString());
+
+      final merchantRequestId = transactionInitialisation["MerchantRequestID"];
+      if (merchantRequestId != null) {
+        final customerMesssage = transactionInitialisation["CustomerMessage"];
+        if (customerMesssage != null) {
+          // show toast message
+        }
+        final currentUser = FirebaseAuth.instance.currentUser;
+        if (currentUser != null) {
+          FirebaseFirestore.instance
+              .collection("mpesa")
+              .doc(currentUser.uid)
+              .collection("transactions")
+              .add(
+            {
+              "amount": amount,
+              "phone_no": phone,
+              "timestamp": DateTime.now().millisecondsSinceEpoch,
+            },
+          );
+          // send data to firebase
+        } else {
+          //user is not logged in
+        }
+      }
+
+      final errorMessage = transactionInitialisation["errorMessage"];
+      if (errorMessage != null) {
+        showCupertinoDialog(
+            context: context,
+            builder: (_) {
+              return Padding(
+                padding: EdgeInsets.all(10),
+                child: Text(
+                  errorMessage,
+                  textAlign: TextAlign.center,
+                ),
+              );
+            });
+      }
     } catch (e) {
       print("mpesa error");
       print(e);
@@ -179,12 +224,21 @@ class MPesaScreen extends GetWidget<MPesaController> {
     }
   }
 
-  void pay() {
+  void pay(BuildContext context) {
+    if (controller.transactionInProgress) {
+      return;
+    }
     print("pay clicked");
+    controller
+      ..transactionInProgress = true
+      ..update();
     startTransaction(
+      context,
       amount: double.parse(controller.amountInputController.text),
       phone: controller.phoneInputController.text,
-    );
+    ).then((value) => controller
+      ..transactionInProgress = false
+      ..update());
     //pay
   }
 }

@@ -14,7 +14,11 @@ class RecordsController extends GetxController {
 
   TextEditingController amountInputController = TextEditingController();
 
+  TextEditingController buyersPhoneNoInputController = TextEditingController();
+
   Rx<RecordsModel> recordsModelObj = RecordsModel().obs;
+
+  bool saving = false;
 
   @override
   void onReady() {

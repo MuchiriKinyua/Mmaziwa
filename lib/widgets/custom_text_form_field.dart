@@ -21,7 +21,8 @@ class CustomTextFormField extends StatelessWidget {
       this.prefixConstraints,
       this.suffix,
       this.suffixConstraints,
-      this.validator});
+      this.validator,
+      this.keyboardType});
 
   TextFormFieldShape? shape;
 
@@ -59,6 +60,8 @@ class CustomTextFormField extends StatelessWidget {
 
   FormFieldValidator<String>? validator;
 
+  TextInputType? keyboardType;
+
   @override
   Widget build(BuildContext context) {
     return alignment != null
@@ -71,9 +74,9 @@ class CustomTextFormField extends StatelessWidget {
 
   _buildTextFormFieldWidget() {
     return Container(
-      width: getHorizontalSize(width ?? 0),
       margin: margin,
       child: TextFormField(
+        keyboardType: keyboardType,
         controller: controller,
         focusNode: focusNode,
         style: _setFontStyle(),

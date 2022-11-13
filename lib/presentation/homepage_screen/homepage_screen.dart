@@ -8,18 +8,22 @@ import 'controller/homepage_controller.dart';
 
 // ignore: must_be_immutable
 class HomepageScreen extends GetWidget<HomepageController> {
-  Stream<QuerySnapshot<Map<String, dynamic>>> recordsStream =
-      FirebaseFirestore.instance.collection("records").snapshots();
+  Stream<QuerySnapshot<Map<String, dynamic>>> recordsStream = FirebaseFirestore
+      .instance
+      .collection("data")
+      .doc(FirebaseAuth.instance.currentUser!.uid)
+      .collection("records")
+      .snapshots();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstant.whiteA700,
         body: Container(
-          width: size.width,
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Align(
@@ -103,7 +107,7 @@ class HomepageScreen extends GetWidget<HomepageController> {
                 ),
               ),
               Padding(
-                padding: getPadding(left: 20, top: 29, right: 20),
+                padding: getPadding(left: 20, top: 29, right: 20, bottom: 20),
                 child: Text("lbl_records".tr,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.left,
@@ -119,29 +123,108 @@ class HomepageScreen extends GetWidget<HomepageController> {
                   }
 
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Text("Loading");
+                    return Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        "Loading",
+                        textAlign: TextAlign.center,
+                      ),
+                    );
                   }
 
-                  return ListView(
-                    children:
-                        snapshot.data!.docs.map((DocumentSnapshot document) {
-                      Map<String, dynamic> data =
-                          document.data()! as Map<String, dynamic>;
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 10),
-                        child: Wrap(
-                          spacing: 10,
+                  return Container(
+                    margin: EdgeInsets.only(left: 10),
+                    child: Table(
+                      children: [
+                        TableRow(
                           children: [
-                            Text("${data["name"]}"),
-                            Text("${data["type"]}"),
-                            Text("${data["output"]}"),
-                            Text("${data["buyer"]}"),
-                            Text("${data["amount"]}"),
+                            TableCell(
+                              child: Text(
+                                "Name",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            TableCell(
+                              child: Text(
+                                "Type",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            TableCell(
+                              child: Text(
+                                "Output",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            TableCell(
+                              child: Text(
+                                "Buyer",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            TableCell(
+                              child: Text(
+                                "Amount",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            TableCell(
+                              child: Text(
+                                "Actions",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
                           ],
                         ),
-                      );
-                    }).toList(),
+                        ...snapshot.data!.docs.map((DocumentSnapshot document) {
+                          Map<String, dynamic> data =
+                              document.data()! as Map<String, dynamic>;
+                          return TableRow(
+                            children: [
+                              TableCell(
+                                child: Text("${data["name"]}"),
+                              ),
+                              TableCell(
+                                child: Text("${data["type"]}"),
+                              ),
+                              TableCell(
+                                child: Text("${data["output"]}"),
+                              ),
+                              TableCell(
+                                child: Text("${data["buyer"]}"),
+                              ),
+                              TableCell(
+                                child: Text("${data["amount"]}"),
+                              ),
+                              TableCell(
+                                child: Row(
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        FirebaseFirestore.instance
+                                            .collection("data")
+                                            .doc(FirebaseAuth
+                                                .instance.currentUser!.uid)
+                                            .collection("records")
+                                            .doc(document.id)
+                                            .delete();
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4.0),
+                                        child: Icon(
+                                          Icons.remove_circle_outline,
+                                          color: Colors.red,
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          );
+                        }).toList(),
+                      ],
+                    ),
                   );
                 },
               )),

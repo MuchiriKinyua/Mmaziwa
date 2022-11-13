@@ -189,7 +189,7 @@ class LogInScreen extends GetWidget<LogInController> {
                                       left: 39, top: 48, right: 39, bottom: 20),
                                   variant: ButtonVariant.FillGray500,
                                   onTap: onTapBtnLogin,
-                                  alignment: Alignment.centerLeft)
+                                  alignment: Alignment.centerLeft),
                             ]))))));
   }
 

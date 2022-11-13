@@ -9,6 +9,8 @@ class MPesaController extends GetxController {
   final amountInputController = TextEditingController();
   final phoneInputController = TextEditingController();
 
+  bool transactionInProgress = false;
+
   @override
   void onReady() {
     super.onReady();
