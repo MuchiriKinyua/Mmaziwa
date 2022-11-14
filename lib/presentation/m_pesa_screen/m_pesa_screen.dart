@@ -80,6 +80,23 @@ class MPesaScreen extends GetWidget<MPesaController> {
                                 keyboardType: TextInputType.number,
                                 controller: controller.amountInputController,
                                 decoration: InputDecoration(
+                                  hintText: "Enter Milk Quantity",
+                                ),
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return "Please enter a value";
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 20),
+                              child: TextFormField(
+                                keyboardType: TextInputType.number,
+                                controller: controller.amountInputController,
+                                decoration: InputDecoration(
                                   hintText: "Enter Amount",
                                 ),
                                 validator: (value) {

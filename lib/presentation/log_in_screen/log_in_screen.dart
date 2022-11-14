@@ -183,8 +183,16 @@ class LogInScreen extends GetWidget<LogInController> {
                                                             .txtInterRegular16)))
                                           ]))),
                               CustomButton(
-                                  width: 115,
+                                  width: 230,
                                   text: "lbl_log_in".tr,
+                                  margin: getMargin(
+                                      left: 39, top: 48, right: 39, bottom: 20),
+                                  variant: ButtonVariant.FillGray500,
+                                  onTap: onTapBtnLogin,
+                                  alignment: Alignment.centerLeft),
+                              CustomButton(
+                                  width: 230,
+                                  text: "lbl_log_in2".tr,
                                   margin: getMargin(
                                       left: 39, top: 48, right: 39, bottom: 20),
                                   variant: ButtonVariant.FillGray500,

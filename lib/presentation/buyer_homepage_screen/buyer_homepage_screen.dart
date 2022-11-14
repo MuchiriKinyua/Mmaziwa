@@ -60,22 +60,7 @@ class BuyerHomepageScreen extends GetWidget<BuyerHomepageController> {
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Container(
-                                          width: getHorizontalSize(82.00),
-                                          margin: getMargin(
-                                              left: 19,
-                                              top: 13,
-                                              right: 19,
-                                              bottom: 19),
-                                          child: Text("lbl_all_records".tr,
-                                              maxLines: null,
-                                              textAlign: TextAlign.left,
-                                              style: AppStyle
-                                                  .txtInterExtraBold20)))
-                                ]))),
+                                children: []))),
                     GestureDetector(
                       onTap: () {
                         onTapButton1();
@@ -140,25 +125,7 @@ class BuyerHomepageScreen extends GetWidget<BuyerHomepageController> {
                           children: [
                             TableCell(
                               child: Text(
-                                "Name",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            TableCell(
-                              child: Text(
-                                "Type",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            TableCell(
-                              child: Text(
-                                "Output",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            TableCell(
-                              child: Text(
-                                "Buyer",
+                                "Milk Output",
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -182,16 +149,7 @@ class BuyerHomepageScreen extends GetWidget<BuyerHomepageController> {
                           return TableRow(
                             children: [
                               TableCell(
-                                child: Text("${data["name"]}"),
-                              ),
-                              TableCell(
-                                child: Text("${data["type"]}"),
-                              ),
-                              TableCell(
-                                child: Text("${data["output"]}"),
-                              ),
-                              TableCell(
-                                child: Text("${data["buyer"]}"),
+                                child: Text("${data["milk output"]}"),
                               ),
                               TableCell(
                                 child: Text("${data["amount"]}"),
