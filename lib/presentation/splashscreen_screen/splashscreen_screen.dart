@@ -37,7 +37,7 @@ class SplashscreenScreen extends GetWidget<SplashscreenController> {
                                             width: getHorizontalSize(320.00))),
                                     Container(
                                         margin: getMargin(
-                                            left: 20, top: 43, right: 20),
+                                            left: 20, top: 43, right: 75),
                                         child: RichText(
                                             text: TextSpan(children: [
                                               TextSpan(
@@ -48,7 +48,7 @@ class SplashscreenScreen extends GetWidget<SplashscreenController> {
                                                       fontSize: getFontSize(24),
                                                       fontFamily: 'Inter',
                                                       fontWeight:
-                                                          FontWeight.w400)),
+                                                          FontWeight.w300)),
                                               TextSpan(
                                                   text: "lbl_mmaziwa_app2".tr,
                                                   style: TextStyle(
@@ -64,9 +64,9 @@ class SplashscreenScreen extends GetWidget<SplashscreenController> {
                                         width: getHorizontalSize(317.00),
                                         margin: getMargin(
                                             left: 20,
-                                            top: 46,
+                                            top: 16,
                                             right: 20,
-                                            bottom: 43),
+                                            bottom: 23),
                                         child: Text("msg_mmaziwa_is_an_a".tr,
                                             maxLines: null,
                                             textAlign: TextAlign.left,
@@ -76,7 +76,7 @@ class SplashscreenScreen extends GetWidget<SplashscreenController> {
                           width: 213,
                           text: "lbl_get_started".tr,
                           margin: getMargin(
-                              left: 79, top: 78, right: 68, bottom: 20),
+                              left: 79, top: 30, right: 68, bottom: 20),
                           padding: ButtonPadding.PaddingAll10,
                           fontStyle: ButtonFontStyle.InterRegular24,
                           onTap: onTapBtnGetstarted)

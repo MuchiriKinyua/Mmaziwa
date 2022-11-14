@@ -77,9 +77,6 @@ class HomepageScreen extends GetWidget<HomepageController> {
                                                   .txtInterExtraBold20)))
                                 ]))),
                     GestureDetector(
-                      onTap: () {
-                        onTapButton1();
-                      },
                       child: Container(
                         margin: getMargin(left: 14),
                         decoration: AppDecoration.fillGray601,
@@ -245,10 +242,6 @@ class HomepageScreen extends GetWidget<HomepageController> {
 
   onTapButton() {
     Get.toNamed(AppRoutes.recordsScreen);
-  }
-
-  onTapButton1() {
-    Get.toNamed(AppRoutes.mPesaScreen);
   }
 
   onTapBtnLogout() {

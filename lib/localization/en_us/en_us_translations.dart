@@ -6,8 +6,8 @@ final Map<String, String> enUs = {
   "lbl_buyer": "@buyer",
   "lbl_email": "@email",
   "lbl_name": "@name",
-  "lbl_mmaziwa_app": "MMaziwa app",
-  "lbl_mmaziwa_app2": "MMaziwa app",
+  "lbl_mmaziwa_app": "MMaziwa",
+  "lbl_mmaziwa_app2": "MMaziwa",
   "lbl_your_email": "Your email",
   "msg_did_you_forget": "Did you forget your password?",
   "lbl_output": "@output",
@@ -44,6 +44,7 @@ final Map<String, String> enUs = {
   "lbl_records": "                        Records",
   "msg_mmaziwa_is_an_a":
       "MMaziwa is an application which digitizes your milk recording strategy as well as enable you to carry out milk purchases and sales",
+  "msg_mmaziwa_is_an_a2": "Welcome aboard! Please register with this few steps",
   "msg_enter_the_cows2": "Enter the cows type:",
   "lbl_type": "@type"
 };

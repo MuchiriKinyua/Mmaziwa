@@ -36,52 +36,49 @@ class RegistrationScreen extends GetWidget<RegistrationController> {
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Container(
-                                    margin:
-                                        getMargin(left: 67, top: 25, right: 67),
+                                Padding(
+                                    padding:
+                                        getPadding(left: 20, top: 7, right: 20),
+                                    child: CommonImageView(
+                                        imagePath: ImageConstant.imgCows1,
+                                        height: getVerticalSize(135.00),
+                                        width: getHorizontalSize(320.00))),
+                                Container(
+                                    margin: getMargin(top: 5, right: 60),
                                     child: RichText(
-                                      text: TextSpan(children: [
-                                        TextSpan(
-                                            text: "          ".tr,
-                                            style: TextStyle(
-                                                color: ColorConstant.black900,
-                                                fontSize: getFontSize(24),
-                                                fontFamily: 'Inter',
-                                                fontWeight: FontWeight.w400)),
-                                        TextSpan(
-                                          text: "lbl_mmaziwa_app2".tr,
-                                          style: TextStyle(
-                                            color: ColorConstant.black900,
-                                            fontSize: getFontSize(32),
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        )
-                                      ]),
-                                      textAlign: TextAlign.left,
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                    alignment: Alignment.center,
-                                    child: Padding(
-                                        padding: getPadding(
-                                            left: 27,
-                                            top: 17,
-                                            right: 27,
-                                            bottom: 14),
-                                        child: Text("msg_welcome_aboard".tr,
-                                            overflow: TextOverflow.ellipsis,
-                                            textAlign: TextAlign.left,
-                                            style:
-                                                AppStyle.txtInterSemiBold12)))
+                                        text: TextSpan(children: [
+                                          TextSpan(
+                                              text: "          ".tr,
+                                              style: TextStyle(
+                                                  color: ColorConstant.black900,
+                                                  fontSize: getFontSize(24),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w400)),
+                                          TextSpan(
+                                              text: "lbl_mmaziwa_app2".tr,
+                                              style: TextStyle(
+                                                  color: ColorConstant.black900,
+                                                  fontSize: getFontSize(24),
+                                                  fontFamily: 'Inter',
+                                                  fontWeight: FontWeight.w400))
+                                        ]),
+                                        textAlign: TextAlign.left)),
+                                Container(
+                                    width: getHorizontalSize(317.00),
+                                    margin: getMargin(
+                                        left: 20,
+                                        top: 1,
+                                        right: 20,
+                                        bottom: 10),
+                                    child: Text("msg_mmaziwa_is_an_a2".tr,
+                                        maxLines: null,
+                                        textAlign: TextAlign.left,
+                                        style: AppStyle.txtInterRegular20))
                               ]))),
                   Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
-                          padding: getPadding(left: 19, top: 24, right: 19),
+                          padding: getPadding(left: 19, top: 7, right: 19),
                           child: Text("msg_enter_your_full".tr,
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.left,

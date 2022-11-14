@@ -36,6 +36,18 @@ class LogInScreen extends GetWidget<LogInController> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.end,
                                           children: [
+                                            Padding(
+                                                padding: getPadding(
+                                                    left: 20,
+                                                    top: 7,
+                                                    right: 20),
+                                                child: CommonImageView(
+                                                    imagePath:
+                                                        ImageConstant.imgCows1,
+                                                    height:
+                                                        getVerticalSize(135.00),
+                                                    width: getHorizontalSize(
+                                                        320.00))),
                                             Align(
                                                 alignment: Alignment.centerLeft,
                                                 child: Container(
@@ -69,7 +81,7 @@ class LogInScreen extends GetWidget<LogInController> {
                                                                       .black900,
                                                                   fontSize:
                                                                       getFontSize(
-                                                                          32),
+                                                                          24),
                                                                   fontFamily:
                                                                       'Inter',
                                                                   fontWeight:
@@ -96,7 +108,7 @@ class LogInScreen extends GetWidget<LogInController> {
                                   alignment: Alignment.centerLeft,
                                   child: Padding(
                                       padding: getPadding(
-                                          left: 24, top: 99, right: 24),
+                                          left: 24, top: 7, right: 24),
                                       child: Text("msg_enter_your_emai".tr,
                                           overflow: TextOverflow.ellipsis,
                                           textAlign: TextAlign.left,
@@ -171,7 +183,7 @@ class LogInScreen extends GetWidget<LogInController> {
                                                 child: Padding(
                                                     padding: getPadding(
                                                         left: 2,
-                                                        top: 10,
+                                                        top: 5,
                                                         right: 10),
                                                     child: Text(
                                                         "msg_did_you_forget".tr,
@@ -186,7 +198,7 @@ class LogInScreen extends GetWidget<LogInController> {
                                   width: 230,
                                   text: "lbl_log_in".tr,
                                   margin: getMargin(
-                                      left: 39, top: 48, right: 39, bottom: 20),
+                                      left: 39, top: 10, right: 39, bottom: 20),
                                   variant: ButtonVariant.FillGray500,
                                   onTap: onTapBtnLogin,
                                   alignment: Alignment.centerLeft),
@@ -194,7 +206,7 @@ class LogInScreen extends GetWidget<LogInController> {
                                   width: 230,
                                   text: "lbl_log_in2".tr,
                                   margin: getMargin(
-                                      left: 39, top: 48, right: 39, bottom: 20),
+                                      left: 39, top: 10, right: 39, bottom: 20),
                                   variant: ButtonVariant.FillGray500,
                                   onTap: onTapBtnLogin,
                                   alignment: Alignment.centerLeft),
