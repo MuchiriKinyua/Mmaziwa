@@ -208,12 +208,14 @@ class LogInScreen extends GetWidget<LogInController> {
                                   margin: getMargin(
                                       left: 39, top: 10, right: 39, bottom: 20),
                                   variant: ButtonVariant.FillGray500,
-                                  onTap: onTapBtnLogin,
+                                  onTap: () {
+                                    onTapBtnLogin(isBuyer: true);
+                                  },
                                   alignment: Alignment.centerLeft),
                             ]))))));
   }
 
-  onTapBtnLogin() async {
+  onTapBtnLogin({bool isBuyer = false}) async {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(
@@ -222,7 +224,11 @@ class LogInScreen extends GetWidget<LogInController> {
       )
           .then((userCredential) {
         if (userCredential.user != null) {
-          Get.offAndToNamed(AppRoutes.homepageScreen);
+          if (isBuyer) {
+            Get.offAndToNamed(AppRoutes.buyerHomePageScreen);
+          } else {
+            Get.offAndToNamed(AppRoutes.homepageScreen);
+          }
         }
       });
     } on FirebaseAuthException catch (e) {

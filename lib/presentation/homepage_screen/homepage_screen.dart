@@ -76,30 +76,6 @@ class HomepageScreen extends GetWidget<HomepageController> {
                                               style: AppStyle
                                                   .txtInterExtraBold20)))
                                 ]))),
-                    GestureDetector(
-                      child: Container(
-                        margin: getMargin(left: 14),
-                        decoration: AppDecoration.fillGray601,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: getHorizontalSize(95.00),
-                              margin: getMargin(
-                                  left: 29, top: 9, right: 29, bottom: 13),
-                              child: Text(
-                                "msg_m_pesa_service".tr,
-                                maxLines: null,
-                                textAlign: TextAlign.left,
-                                style: AppStyle.txtInterRegular24Black900,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    )
                   ],
                 ),
               ),

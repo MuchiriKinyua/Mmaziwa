@@ -8,12 +8,12 @@ import 'controller/buyer_homepage_controller.dart';
 
 // ignore: must_be_immutable
 class BuyerHomepageScreen extends GetWidget<BuyerHomepageController> {
-  Stream<QuerySnapshot<Map<String, dynamic>>> recordsStream = FirebaseFirestore
-      .instance
-      .collection("data")
-      .doc(FirebaseAuth.instance.currentUser!.uid)
-      .collection("records")
-      .snapshots();
+  Stream<QuerySnapshot<Map<String, dynamic>>> transactionsStream =
+      FirebaseFirestore.instance
+          .collection("data")
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection("transactions")
+          .snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +100,7 @@ class BuyerHomepageScreen extends GetWidget<BuyerHomepageController> {
               ),
               Expanded(
                   child: StreamBuilder<QuerySnapshot>(
-                stream: recordsStream,
+                stream: transactionsStream,
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> snapshot) {
                   if (snapshot.hasError) {
@@ -125,7 +125,7 @@ class BuyerHomepageScreen extends GetWidget<BuyerHomepageController> {
                           children: [
                             TableCell(
                               child: Text(
-                                "Milk Output",
+                                "Reference",
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -137,7 +137,7 @@ class BuyerHomepageScreen extends GetWidget<BuyerHomepageController> {
                             ),
                             TableCell(
                               child: Text(
-                                "Actions",
+                                "Date",
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                             ),
@@ -149,34 +149,15 @@ class BuyerHomepageScreen extends GetWidget<BuyerHomepageController> {
                           return TableRow(
                             children: [
                               TableCell(
-                                child: Text("${data["milk output"]}"),
+                                child: Text("${data["record"]}"),
                               ),
                               TableCell(
                                 child: Text("${data["amount"]}"),
                               ),
                               TableCell(
-                                child: Row(
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        FirebaseFirestore.instance
-                                            .collection("data")
-                                            .doc(FirebaseAuth
-                                                .instance.currentUser!.uid)
-                                            .collection("records")
-                                            .doc(document.id)
-                                            .delete();
-                                      },
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(4.0),
-                                        child: Icon(
-                                          Icons.remove_circle_outline,
-                                          color: Colors.red,
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
+                                child: Text(DateTime.fromMillisecondsSinceEpoch(
+                                        data["timestamp"])
+                                    .format("dd/MM/yyyy hh:mm:ss a")),
                               ),
                             ],
                           );
