@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mmaziwaapp/core/app_export.dart';
@@ -196,26 +197,16 @@ class LogInScreen extends GetWidget<LogInController> {
                                           ]))),
                               CustomButton(
                                   width: 230,
-                                  text: "lbl_log_in".tr,
+                                  text: "Login",
                                   margin: getMargin(
                                       left: 39, top: 10, right: 39, bottom: 20),
                                   variant: ButtonVariant.FillGray500,
                                   onTap: onTapBtnLogin,
                                   alignment: Alignment.centerLeft),
-                              CustomButton(
-                                  width: 230,
-                                  text: "lbl_log_in2".tr,
-                                  margin: getMargin(
-                                      left: 39, top: 10, right: 39, bottom: 20),
-                                  variant: ButtonVariant.FillGray500,
-                                  onTap: () {
-                                    onTapBtnLogin(isBuyer: true);
-                                  },
-                                  alignment: Alignment.centerLeft),
                             ]))))));
   }
 
-  onTapBtnLogin({bool isBuyer = false}) async {
+  onTapBtnLogin() async {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(
@@ -224,11 +215,18 @@ class LogInScreen extends GetWidget<LogInController> {
       )
           .then((userCredential) {
         if (userCredential.user != null) {
-          if (isBuyer) {
-            Get.offAndToNamed(AppRoutes.buyerHomePageScreen);
-          } else {
-            Get.offAndToNamed(AppRoutes.homepageScreen);
-          }
+          FirebaseFirestore.instance
+              .collection("users")
+              .doc(userCredential.user!.uid)
+              .get()
+              .then((value) {
+            if (value.exists) {
+              final data = value.data() ?? {};
+              Get.offAndToNamed(data["type"] == "farmer"
+                  ? AppRoutes.homepageScreen
+                  : AppRoutes.buyerHomePageScreen);
+            }
+          });
         }
       });
     } on FirebaseAuthException catch (e) {

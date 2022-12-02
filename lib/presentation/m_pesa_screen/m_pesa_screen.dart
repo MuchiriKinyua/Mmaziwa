@@ -78,7 +78,7 @@ class MPesaScreen extends GetWidget<MPesaController> {
                                   horizontal: 20, vertical: 20),
                               child: TextFormField(
                                 keyboardType: TextInputType.number,
-                                controller: controller.amountInputController,
+                                controller: controller.quantityInputController,
                                 decoration: InputDecoration(
                                   hintText: "Enter Milk Quantity",
                                 ),
@@ -155,7 +155,7 @@ class MPesaScreen extends GetWidget<MPesaController> {
   }
 
   onTapButton() {
-    Get.toNamed(AppRoutes.homepageScreen);
+    Get.toNamed(AppRoutes.buyerHomePageScreen);
   }
 
   Future<dynamic> startTransaction(BuildContext context,
@@ -199,6 +199,7 @@ class MPesaScreen extends GetWidget<MPesaController> {
               .collection("transactions")
               .add(
             {
+              "quantity": controller.quantityInputController.text,
               "amount": amount,
               "phone_no": phone,
               "timestamp": DateTime.now().millisecondsSinceEpoch,

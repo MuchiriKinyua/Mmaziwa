@@ -1,6 +1,7 @@
 // ignore: unused_import
 import 'dart:collection';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -28,9 +29,45 @@ void main() async {
   });
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
 
+class _MyAppState extends State<MyApp> {
+  bool initialized = false;
+  String initialRoute = AppRoutes.initialRoute;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, () async {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        setState(() {
+          initialized = true;
+        });
+      } else {
+        FirebaseFirestore.instance
+            .collection("users")
+            .doc(user.uid)
+            .get()
+            .then((value) {
+          if (value.exists) {
+            final data = value.data() ?? {};
+            setState(() {
+              initialRoute = data["type"] == "farmer"
+                  ? AppRoutes.homepageScreen
+                  : AppRoutes.buyerHomePageScreen;
+              initialized = true;
+            });
+          }
+        });
+      }
+    });
+  }
+
+  // This widget is the root of your application.
   Future<dynamic> startTransaction(
       {required double amount, required String phone}) async {
     // ignore: unused_local_variable
@@ -76,17 +113,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     startTransaction(amount: 10.0, phone: "254713030677");
-    bool isLoggedIn = FirebaseAuth.instance.currentUser != null;
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      translations: AppLocalization(),
-      locale: Get.deviceLocale, //for setting localization strings
-      fallbackLocale: Locale('en', 'US'),
-      title: 'mmaziwaapp',
-      initialBinding: InitialBindings(),
-      initialRoute:
-          isLoggedIn ? AppRoutes.homepageScreen : AppRoutes.initialRoute,
-      getPages: AppRoutes.pages,
-    );
+
+    return initialized
+        ? GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            translations: AppLocalization(),
+            locale: Get.deviceLocale, //for setting localization strings
+            fallbackLocale: Locale('en', 'US'),
+            title: 'mmaziwaapp',
+            initialBinding: InitialBindings(),
+            initialRoute: initialRoute,
+            getPages: AppRoutes.pages,
+          )
+        : MaterialApp(
+            home: Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
+          );
   }
 }

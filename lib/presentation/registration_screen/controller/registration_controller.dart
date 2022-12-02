@@ -15,6 +15,14 @@ class RegistrationController extends GetxController {
 
   Rx<RegistrationModel> registrationModelObj = RegistrationModel().obs;
 
+  void setAccountType(String? type) {
+    registrationModelObj
+      ..update((val) {
+        val?.type = type ?? "farmer";
+      });
+    update();
+  }
+
   @override
   void onReady() {
     super.onReady();

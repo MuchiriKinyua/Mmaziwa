@@ -6,6 +6,7 @@ import '/core/app_export.dart';
 class MPesaController extends GetxController {
   Rx<MPesaModel> mPesaModelObj = MPesaModel().obs;
 
+  final quantityInputController = TextEditingController();
   final amountInputController = TextEditingController();
   final phoneInputController = TextEditingController();
 

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mmaziwaapp/core/app_export.dart';
 import 'package:mmaziwaapp/core/utils/validation_functions.dart';
+import 'package:mmaziwaapp/presentation/registration_screen/models/registration_model.dart';
 import 'package:mmaziwaapp/widgets/custom_button.dart';
 import 'package:mmaziwaapp/widgets/custom_text_form_field.dart';
 
@@ -75,6 +76,33 @@ class RegistrationScreen extends GetWidget<RegistrationController> {
                                         textAlign: TextAlign.left,
                                         style: AppStyle.txtInterRegular20))
                               ]))),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20, top: 20),
+                      child: Text("Account Type: "),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: StreamBuilder<RegistrationModel>(
+                        stream: controller.registrationModelObj.stream,
+                        builder: (context, snapshot) => DropdownButton<String>(
+                          value: snapshot.data?.type ?? "farmer",
+                          items: ["farmer", "buyer"]
+                              .map((accountType) => DropdownMenuItem<String>(
+                                    value: accountType,
+                                    child: Text(
+                                        accountType.capitalize ?? accountType),
+                                  ))
+                              .toList(),
+                          onChanged: controller.setAccountType,
+                        ),
+                      ),
+                    ),
+                  ),
                   Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(
@@ -182,7 +210,7 @@ class RegistrationScreen extends GetWidget<RegistrationController> {
                         Text("Already have an account?"),
                         TextButton(
                             onPressed: () {
-                              Get.offAndToNamed(AppRoutes.logInScreen);
+                              Get.toNamed(AppRoutes.logInScreen);
                             },
                             child: Text("Login"))
                       ],
@@ -204,17 +232,18 @@ class RegistrationScreen extends GetWidget<RegistrationController> {
       password: controller.passwordInputController.text,
     );
     final user = userCredential.user;
+    final userData = {
+      "name": controller.nameInputController.text,
+      "type": controller.registrationModelObj.value.type,
+    };
     if (user != null) {
-      //account created
-      //storing name in firestore
-      final userData = {
-        "name": controller.nameInputController.text,
-      };
       await FirebaseFirestore.instance
           .collection("users")
           .doc(user.uid)
           .set(userData);
     }
-    Get.toNamed(AppRoutes.homepageScreen);
+    Get.toNamed(userData["type"] == "farmer"
+        ? AppRoutes.homepageScreen
+        : AppRoutes.buyerHomePageScreen);
   }
 }

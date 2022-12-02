@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mmaziwaapp/core/app_export.dart';
 import 'package:mmaziwaapp/widgets/custom_button.dart';
@@ -84,6 +86,23 @@ class SplashscreenScreen extends GetWidget<SplashscreenController> {
   }
 
   onTapBtnGetstarted() {
-    Get.offAndToNamed(AppRoutes.registrationScreen);
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      Get.offAndToNamed(AppRoutes.registrationScreen);
+      return;
+    }
+
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(user.uid)
+        .get()
+        .then((value) {
+      if (value.exists) {
+        final data = value.data() ?? {};
+        Get.offAndToNamed(data["type"] == "farmer"
+            ? AppRoutes.homepageScreen
+            : AppRoutes.buyerHomePageScreen);
+      }
+    });
   }
 }

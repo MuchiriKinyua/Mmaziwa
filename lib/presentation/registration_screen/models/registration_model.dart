@@ -1,1 +1,3 @@
-class RegistrationModel {}
+class RegistrationModel {
+  String type = "farmer";
+}

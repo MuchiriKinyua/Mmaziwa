@@ -131,6 +131,12 @@ class BuyerHomepageScreen extends GetWidget<BuyerHomepageController> {
                             ),
                             TableCell(
                               child: Text(
+                                "Quantity",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            TableCell(
+                              child: Text(
                                 "Amount",
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
@@ -150,6 +156,9 @@ class BuyerHomepageScreen extends GetWidget<BuyerHomepageController> {
                             children: [
                               TableCell(
                                 child: Text("${data["record"]}"),
+                              ),
+                              TableCell(
+                                child: Text("${data["quantity"]}"),
                               ),
                               TableCell(
                                 child: Text("${data["amount"]}"),
