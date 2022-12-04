@@ -169,8 +169,13 @@ class RegistrationScreen extends GetWidget<RegistrationController> {
                         return null;
                       },
                       isObscureText: true),
-                  Text(
-                      "Password should have at least upper case, lower case, a digit and a special character"),
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                          padding: getPadding(left: 19, top: 4, right: 19),
+                          child: Text("msg_pass".tr,
+                              textAlign: TextAlign.left,
+                              style: AppStyle.txtInterSemiBold12))),
                   Align(
                       alignment: Alignment.centerLeft,
                       child: Padding(

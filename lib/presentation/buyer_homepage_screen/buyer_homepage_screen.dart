@@ -66,7 +66,7 @@ class BuyerHomepageScreen extends GetWidget<BuyerHomepageController> {
                         onTapButton1();
                       },
                       child: Container(
-                        margin: getMargin(left: 14),
+                        margin: getMargin(left: 85),
                         decoration: AppDecoration.fillGray601,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -92,7 +92,7 @@ class BuyerHomepageScreen extends GetWidget<BuyerHomepageController> {
                 ),
               ),
               Padding(
-                padding: getPadding(left: 20, top: 29, right: 20, bottom: 20),
+                padding: getPadding(left: 35, top: 29, right: 20, bottom: 20),
                 child: Text("lbl_records".tr,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.left,
@@ -177,9 +177,9 @@ class BuyerHomepageScreen extends GetWidget<BuyerHomepageController> {
                 },
               )),
               CustomButton(
-                width: 185,
+                width: 100,
                 text: "lbl_log_out".tr,
-                margin: getMargin(left: 20, right: 20, bottom: 20),
+                margin: getMargin(left: 130, right: 20, bottom: 20),
                 variant: ButtonVariant.FillRed200,
                 fontStyle: ButtonFontStyle.InterExtraBold20,
                 onTap: onTapBtnLogout,

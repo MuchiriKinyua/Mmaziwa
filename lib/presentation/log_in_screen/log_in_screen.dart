@@ -195,11 +195,19 @@ class LogInScreen extends GetWidget<LogInController> {
                                                         style: AppStyle
                                                             .txtInterRegular16)))
                                           ]))),
+                              TextButton(
+                                  onPressed: () {
+                                    Get.toNamed(AppRoutes.registrationScreen);
+                                  },
+                                  child: Text("Sign Up")),
                               CustomButton(
-                                  width: 230,
-                                  text: "Login",
+                                  width: 100,
+                                  text: "Log in",
                                   margin: getMargin(
-                                      left: 39, top: 10, right: 39, bottom: 20),
+                                      left: 135,
+                                      top: 10,
+                                      right: 39,
+                                      bottom: 20),
                                   variant: ButtonVariant.FillGray500,
                                   onTap: onTapBtnLogin,
                                   alignment: Alignment.centerLeft),

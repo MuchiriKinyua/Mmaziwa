@@ -31,6 +31,8 @@ final Map<String, String> enUs = {
   "msg_enter_the_cows": "Enter the Cows name:",
   "lbl_homepage": "Homepage",
   "msg_enter_your_emai": "Enter your email address:",
+  "msg_pass":
+      "Password should have at least upper case, lower case, a digit and a special character",
   "msg_back_to_homepag": "Back to homepage",
   "msg_check_your_app":
       "Check your app's UI from the below demo screens of your app.",
