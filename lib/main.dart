@@ -19,14 +19,13 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
-  ]).then((value) {
-    Logger.init(kReleaseMode ? LogMode.live : LogMode.debug);
+  ]);
+  Logger.init(kReleaseMode ? LogMode.live : LogMode.debug);
 
-    MpesaFlutterPlugin.setConsumerKey(kConsumerKey);
-    MpesaFlutterPlugin.setConsumerSecret(kConsumerSecret);
+  MpesaFlutterPlugin.setConsumerKey(kConsumerKey);
+  MpesaFlutterPlugin.setConsumerSecret(kConsumerSecret);
 
-    runApp(MyApp());
-  });
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {

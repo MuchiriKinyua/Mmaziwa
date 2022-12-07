@@ -201,13 +201,10 @@ class LogInScreen extends GetWidget<LogInController> {
                                   },
                                   child: Text("Sign Up")),
                               CustomButton(
-                                  width: 100,
+                                  width: 230,
                                   text: "Log in",
                                   margin: getMargin(
-                                      left: 135,
-                                      top: 10,
-                                      right: 39,
-                                      bottom: 20),
+                                      left: 39, top: 10, right: 39, bottom: 20),
                                   variant: ButtonVariant.FillGray500,
                                   onTap: onTapBtnLogin,
                                   alignment: Alignment.centerLeft),
