@@ -273,5 +273,6 @@ class RecordsScreen extends GetWidget<RecordsController> {
     save(context).then((value) => controller
       ..saving = false
       ..update());
+    Get.toNamed(AppRoutes.homepageScreen);
   }
 }

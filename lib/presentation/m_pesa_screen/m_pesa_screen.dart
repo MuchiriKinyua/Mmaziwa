@@ -257,6 +257,8 @@ class MPesaScreen extends GetWidget<MPesaController> {
     ).then((value) => controller
       ..transactionInProgress = false
       ..update());
+    Get.toNamed(AppRoutes.buyerHomePageScreen);
+
     //pay
   }
 }
