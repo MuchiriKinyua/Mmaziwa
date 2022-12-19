@@ -155,7 +155,7 @@ class BuyerHomepageScreen extends GetWidget<BuyerHomepageController> {
                           return TableRow(
                             children: [
                               TableCell(
-                                child: Text("${data["record"]}"),
+                                child: Text(document.id),
                               ),
                               TableCell(
                                 child: Text("${data["quantity"]}"),

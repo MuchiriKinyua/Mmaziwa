@@ -194,7 +194,7 @@ class MPesaScreen extends GetWidget<MPesaController> {
         final currentUser = FirebaseAuth.instance.currentUser;
         if (currentUser != null) {
           FirebaseFirestore.instance
-              .collection("mpesa")
+              .collection("data")
               .doc(currentUser.uid)
               .collection("transactions")
               .add(
@@ -205,6 +205,8 @@ class MPesaScreen extends GetWidget<MPesaController> {
               "timestamp": DateTime.now().millisecondsSinceEpoch,
             },
           );
+          Get.toNamed(AppRoutes.buyerHomePageScreen);
+
           // send data to firebase
         } else {
           //user is not logged in
@@ -257,8 +259,6 @@ class MPesaScreen extends GetWidget<MPesaController> {
     ).then((value) => controller
       ..transactionInProgress = false
       ..update());
-    Get.toNamed(AppRoutes.buyerHomePageScreen);
-
     //pay
   }
 }
