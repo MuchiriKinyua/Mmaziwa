@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+// ignore: deprecated_member_use
 Size size = WidgetsBinding.instance.window.physicalSize /
+    // ignore: deprecated_member_use
     WidgetsBinding.instance.window.devicePixelRatio;
 const num DESIGN_WIDTH = 360;
 const num DESIGN_HEIGHT = 640;
@@ -14,7 +16,8 @@ get width {
 ///This method is used to get device viewport height.
 get height {
   num statusBar =
-      MediaQueryData.fromWindow(WidgetsBinding.instance.window).viewPadding.top;
+      // ignore: deprecated_member_use
+      MediaQueryData.fromView(WidgetsBinding.instance.window).viewPadding.top;
   num screenHeight = size.height - statusBar;
   return screenHeight;
 }
