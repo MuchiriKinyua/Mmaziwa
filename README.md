@@ -1,94 +1,42 @@
+# MMAZIWA
 
-# mmaziwaapp
-
-<div>
-  <h1 align="center">Getting Started with Flutter 🚀 </h1>
-  <strong>
-    Generated with ❤️ from DhiWise
-  </strong>
-  <p>
-    This is the documentation of Flutter Applications.
-    It contains all the information you need to get started with
-    and make changes to your App
-  </p>
-</div>
+![Screenshot_20221211-142559](https://github.com/MuchiriKinyua/Mmaziwa/assets/113877377/c19433ca-f2b4-40bc-ab75-39677d6b8801)
 
 
-### Table of Contents
-- [System Requirements](#system-requirements)
-- [Figma design guidelines for better accuracy](#figma-design-guideline-for-better-accuracy)
-- [App Navigations](#app-navigations)
-- [Project Structure](#project-structure)
-- [How you can do code formatting?](#how-you-can-do-code-formatting)
-- [How you can improve the readability of code?](#how-you-can-improve-the-readability-of-code)
-- [Libraries and tools used](#libraries-and-tools-used)
-- [Support](#support)
+MMaziwa is a small-scale Dairy Farm Information Management System refers to a system that automates the activities of small-scale dairy farmers.This is because farmers practicing this type of farming keep their records manually or even don't keep their records at all. 
+By having a platform by which they can input their cows' data they can keep it safe and secure hence having references in the future. 
+Also, they can input through the app the amount of milk they have sold and how much they earned by doing so.
 
-### System Requirements
+# Problem Statement
+The challenge in collecting proper and accurate milk production information hinders the exploitation of Kenya's full potential for the economic contribution of the dairy sector. 
+Many choose to memorize the cows' inputs and outputs. This is dangerous because the cows' details are so many and ever-changing on a day-to-day basis. 
+Novice farmers cannot memorize such especially if they have a quite large number of cows that are being milked at a given period e.g., 4 (a large number for a small-scale farmer). 
+Also, because they don't record the amount of input they are feeding the cattle, they are prone to overfeeding the animals or even underfeeding them.
 
-Dart SDK Version 2.17.0 or greater.
-Flutter SDK Version 3.0.0 or greater.
+# In-scope
+Enable the farmer to input their details such as name, email address, and password. This will be necessary for the event a farmer losses his/her device.
+Enable the recording of a cow's milk production for the entire day.
+Store the cows' data which can be used for future reference by the farmer.
 
-### Figma design guidelines for better accuracy
+# Out-of-scope
+Record other outputs of the cow such as meat production since the app strictly deals with dairy cattle.
+Record inputs of any other animal except a dairy cow such as a goat.
+Record inputs of a cow i.e., its' not focused on what a cow is consuming but rather what it is producing.
 
-Read our guidelines to increase the accuracy of design conversion to code by optimizing Figma designs.
-https://docs.dhiwise.com/docs/Designguidelines/intro
+# Justification 
+All types of farmers will be able to use it hence ensuring the average learned farmer from the rural area can use it.
+It is much easier to input a record digitally than to get a book and start filling it.
+The farmers can access their records even if the records phone gets lost since they can simply login into their account and get their records back unlike when a book is lost, the records are gone forever.
 
-### App Navigations
+# Application Development Methodology 
+The waterfall model is used for the development of the recording system for milk producers. This methodology is considered the classic style of software development which clarifies the application development process in a linear sequential flow. 
+This means that any phase in the development process starts when the earlier phase is completed.
 
-Check your app's UI from the AppNavigation screen of your app.
+# Conclusions
+The project was a success whereby the said system (mobile application) was designed and can now be used in real life by a degree student.
+It contains real-life applications such as the M-Pesa platform whereby many are now used to it and therefore nothing new.
+It is also so simple to login details hence will be much easy for the farmers to key in their day-to-day activities.
 
-### Project Structure
-
-After successful build, your application structure should look like this:
-
-```
-.
-├── android                         - contains files and folders required for running the application on an Android operating system.
-├── assets                          - contains all images and fonts of your application.
-├── ios                             - contains files required by the application to run the dart code on iOS platforms.
-├── lib                             - Most important folder in the project, used to write most of the Dart code.
-    ├── main.dart                   - starting point of the application
-    ├── core
-    │   ├── app_export.dart         - contains commonly used file imports 
-    │   ├── constants               - contains all constants classes
-    │   ├── errors                  - contains error handling classes                  
-    │   ├── network                 - contains network related classes
-    │   └── utils                   - contains common files and utilities of project
-    ├── data
-    │   ├── apiClient               - contains API calling methods 
-    │   ├── models                  - contains request/response models 
-    │   └── repository              - network repository
-    ├── localization                - contains localization classes
-    ├── presentation                - contains all screens and screen controllers
-    │   └── screens                 - contains all screens
-    ├── routes                      - contains all the routes of application
-    └── theme                       - contains app theme and decoration classes
-    └── widgets                     - contains all custom widget classes
-```
-
-### How you can do code formatting?
-
-- if your code is not formatted then run following command in your terminal to format code
-  ```
-  dart format .
-  ```
-
-### How you can improve the readability of code?
-
-Resolve the errors and warnings that are shown in the application.
-
-### Libraries and tools used
-
-- get - State management
-  https://pub.dev/packages/get
-- connectivity_plus - For status of network connectivity
-  https://pub.dev/packages/connectivity_plus
-- shared_preferences - Provide persistent storage for simple data
-  https://pub.dev/packages/shared_preferences
-- cached_network_image - For storing internet image into cache
-  https://pub.dev/packages/cached_network_image
-    
-### Support
-
-If you have problems or questions go to our Discord channel, we will then try to help you as quickly as possible: https://discord.com/invite/rFMnCG5MZ7
+# Recommendations
+The county governments should incorporate such an application to see how it can be used by small-scale dairy farmers.
+They should also improve it for it to move to the next level i.e., Large-scale dairy users, and in this case, administrators will be involved in monitoring milk production.
